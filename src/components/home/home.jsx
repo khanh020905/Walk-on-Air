@@ -157,20 +157,28 @@ const Home = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {products.map((product) => (
-            <ProductCard
-              key={product.id}
-              {...product}
-              image={product.imageUrl}
-              title={product.name}
-              oldPrice={product.originalPrice}
-              isNew={
-                product.badge === "New Arrival" ||
-                product.badge === "New Version"
-              }
-              isSale={product.badge === "Sale"}
-            />
-          ))}
+          {products.length === 0 ? (
+            <div className="col-span-full text-center py-10">
+              <p className="text-gray-500 text-lg">
+                No products available at the moment.
+              </p>
+            </div>
+          ) : (
+            products.map((product) => (
+              <ProductCard
+                key={product.id}
+                {...product}
+                image={product.imageUrl}
+                title={product.name}
+                oldPrice={product.originalPrice}
+                isNew={
+                  product.badge === "New Arrival" ||
+                  product.badge === "New Version"
+                }
+                isSale={product.badge === "Sale"}
+              />
+            ))
+          )}
         </div>
       </section>
 
